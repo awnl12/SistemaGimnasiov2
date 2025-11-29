@@ -28,6 +28,6 @@ public class Entrenador implements RecursoReservable{
     }
     
     public boolean isEsVIP(){
-        
+        return esVIP;
     }
 }
