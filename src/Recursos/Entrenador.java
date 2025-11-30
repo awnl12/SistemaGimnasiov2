@@ -22,11 +22,7 @@ public class Entrenador implements RecursoReservable{
                 + usuario.getNombre() + " [" + usuario.getTipoMembresia() + "]";
         }
 
-    @Override
-    public String cancelar() {
-        return "Reserva cancelada del Entrenador " + nombre;
-    }
-    
+ 
     public boolean isEsVIP(){
         return esVIP;
     }

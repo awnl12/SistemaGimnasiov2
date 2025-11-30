@@ -4,6 +4,6 @@ import Modelo.Usuario;
 
 public interface RecursoReservable {
 String reservar(Usuario usuario);
-String cancelar();
+
     
 }

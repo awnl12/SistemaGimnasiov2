@@ -17,9 +17,6 @@ public class SalaClase implements RecursoReservable {
     return "Sala '" + nombre + "' (ID: " + id + ") reservada por "
                 + usuario.getNombre() + " [" + usuario.getTipoMembresia() + "]";    }
 
-    @Override
-    public String cancelar() {
-    return "Reserva de sala '" + nombre + "' cancelada.";
-    }
+    
 
 }
