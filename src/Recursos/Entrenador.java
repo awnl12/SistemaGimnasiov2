@@ -24,7 +24,7 @@ public class Entrenador implements RecursoReservable{
 
     @Override
     public String cancelar() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "Reserva cancelada del Entrenador " + nombre;
     }
     
     public boolean isEsVIP(){

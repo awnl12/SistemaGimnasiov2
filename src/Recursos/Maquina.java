@@ -14,7 +14,7 @@ public class Maquina implements RecursoReservable{
 
     @Override
     public String reservar(Usuario usuario) {
-    return "Maquina " + nombre + " (ID: " + id + ") reservada por " + usuario.getNombre() + "[ + " + usuario.getTipoMembresia() + "]";
+    return "Maquina: " + nombre + " (ID: " + id + ") " + "\nReservada por " + usuario.getNombre() + "\n [ + " + "Membresia: "+ usuario.getTipoMembresia() + "]";
     }
 
     @Override
