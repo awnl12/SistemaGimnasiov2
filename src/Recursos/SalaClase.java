@@ -14,7 +14,7 @@ public class SalaClase implements RecursoReservable {
     
     @Override
     public String reservar(Usuario usuario) {
-    return "Sala '" + nombre + "' (ID: " + id + ") reservada por "
+    return "Sala '" + nombre + "' (ID: " + id + ") " + "\n Reservada por: "
                 + usuario.getNombre() + " [" + usuario.getTipoMembresia() + "]";    }
 
     

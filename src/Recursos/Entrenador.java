@@ -17,8 +17,8 @@ public class Entrenador implements RecursoReservable{
 
     @Override
     public String reservar(Usuario usuario) {
-        String vipText = esVIP ? "ENTRENADOR VIP" : "Entrenador";
-        return vipText + " '" + nombre + "' (ID: " + id + ") reservado por "
+        String vipText = esVIP ? "ENTRENADOR VIP: " : "Entrenador: ";
+        return vipText + " '" + nombre + " ' (ID: " + id + ") " + "\n Reservado por: "
                 + usuario.getNombre() + " [" + usuario.getTipoMembresia() + "]";
         }
 
