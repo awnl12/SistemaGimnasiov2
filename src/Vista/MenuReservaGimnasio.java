@@ -7,6 +7,7 @@ import Factory.SalaFactory;
 
 import Recursos.RecursoReservable;
 import Modelo.Usuario;
+import Proxy.RecursoProxy;
 
 import Modelo.Reserva; // agregadofr
 
@@ -243,7 +244,8 @@ public class MenuReservaGimnasio extends javax.swing.JFrame {
            return;
         }
         
-        RecursoReservable rec = factory.crearRecurso();
+        RecursoReservable recReal = factory.crearRecurso();
+        RecursoReservable rec = new RecursoProxy(recReal);  
         
       
         
@@ -251,25 +253,32 @@ public class MenuReservaGimnasio extends javax.swing.JFrame {
         
         
         
-        // 3. --- AQUI EMPIEZA LO TUYO (STATE) ---
-        // Conectamos con tu clase Reserva
-        reservaActual = new Modelo.Reserva(usuario, rec);
-        
-        // Limpiamos y mostramos info
-        txaSalida.setText(""); 
-        txaSalida.append(">>> RESERVA INICIADA (PENDIENTE) <<<\n");
-        txaSalida.append(rec.reservar(usuario) + "\n");
-        
-        // Actualizamos TU etiqueta de estado
-        lblEstado.setText("Estado: " + reservaActual.getEstadoNombre());
-        
-        // Activamos los botones para confirmar/cancelar
-        btnConfirmar.setEnabled(true);
-        btnCancelar.setEnabled(true);
-    
-          txtNombre.setText(null);
-    cmbMembresia.setSelectedIndex(0);
-    cmbMaquina.setSelectedIndex(0);
+        String resultado = rec.reservar(usuario);
+
+        txaSalida.setText("");
+        txaSalida.append(resultado + "\n");
+
+
+        if (!resultado.startsWith("ACCESO DENEGADO")) {
+
+            reservaActual = new Reserva(usuario, rec);
+
+            lblEstado.setText("Estado: " + reservaActual.getEstadoNombre());
+
+            btnConfirmar.setEnabled(true);
+            btnCancelar.setEnabled(true);
+
+    } else {
+            reservaActual = null;
+            lblEstado.setText("Estado: BLOQUEADO POR PROXY");
+
+            btnConfirmar.setEnabled(false);
+            btnCancelar.setEnabled(false);
+        }
+
+        txtNombre.setText(null);
+        cmbMembresia.setSelectedIndex(0);
+        cmbMaquina.setSelectedIndex(0);
         txtNombre.requestFocus();
     }//GEN-LAST:event_btnReservarActionPerformed
 

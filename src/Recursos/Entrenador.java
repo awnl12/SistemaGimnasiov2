@@ -12,7 +12,7 @@ public class Entrenador implements RecursoReservable{
     public Entrenador(int id, String nombre, boolean esVip) {
         this.id = id;
         this.nombre = nombre;
-        this.esVIP = esVIP;
+        this.esVIP = esVip;
     }
 
     @Override
