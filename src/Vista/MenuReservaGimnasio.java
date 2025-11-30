@@ -56,6 +56,8 @@ public class MenuReservaGimnasio extends javax.swing.JFrame {
         btnConfirmar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txaSalidaState = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -108,12 +110,16 @@ public class MenuReservaGimnasio extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Limpiar");
+        jButton1.setText("Limpiar Campos");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
+
+        txaSalidaState.setColumns(20);
+        txaSalidaState.setRows(5);
+        jScrollPane2.setViewportView(txaSalidaState);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -136,10 +142,15 @@ public class MenuReservaGimnasio extends javax.swing.JFrame {
                         .addGap(80, 80, 80)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
-                .addComponent(btnConfirmar)
-                .addGap(89, 89, 89)
-                .addComponent(btnCancelar)
-                .addGap(22, 22, 22))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnConfirmar)
+                        .addGap(89, 89, 89)
+                        .addComponent(btnCancelar)
+                        .addGap(22, 22, 22))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(32, 32, 32))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButton1)
@@ -179,6 +190,8 @@ public class MenuReservaGimnasio extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnCancelar)
                             .addComponent(btnConfirmar))
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
@@ -254,8 +267,10 @@ public class MenuReservaGimnasio extends javax.swing.JFrame {
         btnConfirmar.setEnabled(true);
         btnCancelar.setEnabled(true);
     
-        
-        
+          txtNombre.setText(null);
+    cmbMembresia.setSelectedIndex(0);
+    cmbMaquina.setSelectedIndex(0);
+        txtNombre.requestFocus();
     }//GEN-LAST:event_btnReservarActionPerformed
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
@@ -267,8 +282,8 @@ public class MenuReservaGimnasio extends javax.swing.JFrame {
         String mensaje = reservaActual.confirmarReserva();
         
         // Mostramos el resultado en el cuadro de texto
-        txaSalida.append("\n--- INTENTO DE CONFIRMACIÓN ---\n");
-        txaSalida.append(mensaje + "\n");
+        txaSalidaState.append("\n--- INTENTO DE CONFIRMACIÓN ---\n");
+        txaSalidaState.append(mensaje + "\n");
         
         // Actualizamos la etiqueta de estado
         lblEstado.setText("Estado: " + reservaActual.getEstadoNombre());
@@ -284,8 +299,8 @@ public class MenuReservaGimnasio extends javax.swing.JFrame {
         String mensaje = reservaActual.cancelarReserva();
         
         // Mostramos el resultado
-        txaSalida.append("\n--- INTENTO DE CANCELACIÓN ---\n");
-        txaSalida.append(mensaje + "\n");
+        txaSalidaState.append("\n--- INTENTO DE CANCELACIÓN ---\n");
+        txaSalidaState.append(mensaje + "\n");
         
         // Actualizamos la etiqueta de estado
         lblEstado.setText("Estado: " + reservaActual.getEstadoNombre());
@@ -294,12 +309,10 @@ public class MenuReservaGimnasio extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-    txtNombre.setText(null);
-    cmbMembresia.setSelectedIndex(0);
-    cmbMaquina.setSelectedIndex(0);
+  
     txaSalida.setText(null);
+    txaSalidaState.setText(null);
     
-    txtNombre.requestFocus();
         
         
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -338,8 +351,10 @@ public class MenuReservaGimnasio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblEstado;
     private javax.swing.JTextArea txaSalida;
+    private javax.swing.JTextArea txaSalidaState;
     private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 }
