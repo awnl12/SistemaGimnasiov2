@@ -8,11 +8,14 @@ import Factory.SalaFactory;
 import Recursos.RecursoReservable;
 import Modelo.Usuario;
 
+import Modelo.Reserva; // agregadofr
 
 import javax.swing.*;
 
 
 public class MenuReservaGimnasio extends javax.swing.JFrame {
+    
+    private Reserva reservaActual; //variable para patron state fr
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(MenuReservaGimnasio.class.getName());
 
@@ -49,6 +52,9 @@ public class MenuReservaGimnasio extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         cmbMaquina = new javax.swing.JComboBox<>();
+        lblEstado = new javax.swing.JLabel();
+        btnConfirmar = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -82,6 +88,24 @@ public class MenuReservaGimnasio extends javax.swing.JFrame {
 
         cmbMaquina.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Maquina", "Sala", "Entrenador" }));
 
+        lblEstado.setText("Estado :");
+
+        btnConfirmar.setText("Confirmar");
+        btnConfirmar.setEnabled(false);
+        btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConfirmarActionPerformed(evt);
+            }
+        });
+
+        btnCancelar.setText("Cancelar");
+        btnCancelar.setEnabled(false);
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -92,26 +116,32 @@ public class MenuReservaGimnasio extends javax.swing.JFrame {
                         .addGap(116, 116, 116)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGap(68, 68, 68)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(70, 70, 70)
-                                .addComponent(jLabel3)
-                                .addGap(56, 56, 56))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel2))
-                                .addGap(18, 18, 18)))
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cmbMembresia, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cmbMaquina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(70, 70, 70)
+                            .addComponent(cmbMaquina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(cmbMembresia, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(72, 72, 72)
+                                .addComponent(lblEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2)
-                    .addComponent(btnReservar))
-                .addContainerGap(127, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addComponent(jButton2)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnReservar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnConfirmar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnCancelar)
+                        .addGap(0, 6, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -120,18 +150,21 @@ public class MenuReservaGimnasio extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnReservar))
+                    .addComponent(btnReservar)
+                    .addComponent(btnConfirmar)
+                    .addComponent(btnCancelar))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(29, 29, 29)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(cmbMembresia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(31, 31, 31)
+                            .addComponent(cmbMembresia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblEstado))
+                        .addGap(44, 44, 44)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(cmbMaquina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -163,29 +196,79 @@ public class MenuReservaGimnasio extends javax.swing.JFrame {
 
     private void btnReservarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReservarActionPerformed
 
+     // 1. Recoger datos (esto es lo básico)
         String nombre = txtNombre.getText().trim();
         String tipoMembresia = (String) cmbMembresia.getSelectedItem();
         
         if (nombre.isEmpty()){
            JOptionPane.showMessageDialog(null, " !!! POR FAVOR INGRESE UN NOMBRE !!! ");
+           return; 
         }
         
+        // 2. Crear objetos usando Factory (Codigo de tu compañero)
         Usuario usuario = new Usuario(nombre, tipoMembresia);
-        
         GimnasioFactory factory = getFactorySeleccionada();
         
         if (factory == null){
-           JOptionPane.showMessageDialog(null, " !!! SELECCIONE UN TIPO DE RECURSO VALIDO !!! ");
+           JOptionPane.showMessageDialog(null, " !!! SELECCIONE UN RECURSO !!! ");
+           return;
         }
         
         RecursoReservable rec = factory.crearRecurso();
         
-        String msjReserva = rec.reservar(usuario);
+        // 3. --- AQUI EMPIEZA LO TUYO (STATE) ---
+        // Conectamos con tu clase Reserva
+        reservaActual = new Modelo.Reserva(usuario, rec);
         
-        txaSalida.append(msjReserva + "\n");
+        // Limpiamos y mostramos info
+        txaSalida.setText(""); 
+        txaSalida.append(">>> RESERVA INICIADA (PENDIENTE) <<<\n");
+        txaSalida.append(rec.reservar(usuario) + "\n");
         
+        // Actualizamos TU etiqueta de estado
+        lblEstado.setText("Estado: " + reservaActual.getEstadoNombre());
+        
+        // Activamos los botones para confirmar/cancelar
+        btnConfirmar.setEnabled(true);
+        btnCancelar.setEnabled(true);
         
     }//GEN-LAST:event_btnReservarActionPerformed
+
+    private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
+        // TODO add your handling code here:
+        // Verificar que existe una reserva
+    if (reservaActual != null) {
+        // AQUÍ USAS TU PATRÓN STATE:
+        // La reserva decide qué hacer según su estado actual
+        String mensaje = reservaActual.confirmarReserva();
+        
+        // Mostramos el resultado en el cuadro de texto
+        txaSalida.append("\n--- INTENTO DE CONFIRMACIÓN ---\n");
+        txaSalida.append(mensaje + "\n");
+        
+        // Actualizamos la etiqueta de estado
+        lblEstado.setText("Estado: " + reservaActual.getEstadoNombre());
+    }
+    
+    }//GEN-LAST:event_btnConfirmarActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        // TODO add your handling code here:
+        
+        // Verificar que existe una reserva
+    if (reservaActual != null) {
+        // AQUÍ USAS TU PATRÓN STATE:
+        String mensaje = reservaActual.cancelarReserva();
+        
+        // Mostramos el resultado
+        txaSalida.append("\n--- INTENTO DE CANCELACIÓN ---\n");
+        txaSalida.append(mensaje + "\n");
+        
+        // Actualizamos la etiqueta de estado
+        lblEstado.setText("Estado: " + reservaActual.getEstadoNombre());
+    }
+    
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     public static void main(String args[]) {
 
@@ -209,6 +292,8 @@ public class MenuReservaGimnasio extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnConfirmar;
     private javax.swing.JButton btnReservar;
     private javax.swing.JComboBox<String> cmbMaquina;
     private javax.swing.JComboBox<String> cmbMembresia;
@@ -218,6 +303,7 @@ public class MenuReservaGimnasio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblEstado;
     private javax.swing.JTextArea txaSalida;
     private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
