@@ -55,6 +55,7 @@ public class MenuReservaGimnasio extends javax.swing.JFrame {
         lblEstado = new javax.swing.JLabel();
         btnConfirmar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -106,6 +107,13 @@ public class MenuReservaGimnasio extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Limpiar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -128,7 +136,8 @@ public class MenuReservaGimnasio extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(cmbMembresia, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(72, 72, 72)
-                                .addComponent(lblEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(lblEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(39, 39, 39)
@@ -142,6 +151,10 @@ public class MenuReservaGimnasio extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnCancelar)
                         .addGap(0, 6, Short.MAX_VALUE))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -169,7 +182,9 @@ public class MenuReservaGimnasio extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton2)))
-                .addGap(45, 45, 45))
+                .addGap(12, 12, 12)
+                .addComponent(jButton1)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -195,7 +210,7 @@ public class MenuReservaGimnasio extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btnReservarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReservarActionPerformed
-// 1. Recoger datos (esto es lo básico)
+
         String nombre = txtNombre.getText().trim();
         String tipoMembresia = (String) cmbMembresia.getSelectedItem();
         
@@ -204,7 +219,7 @@ public class MenuReservaGimnasio extends javax.swing.JFrame {
            return; 
         }
         
-        // 2. Crear objetos usando Factory (Codigo de tu compañero)
+   
         Usuario usuario = new Usuario(nombre, tipoMembresia);
         GimnasioFactory factory = getFactorySeleccionada();
         
@@ -214,6 +229,14 @@ public class MenuReservaGimnasio extends javax.swing.JFrame {
         }
         
         RecursoReservable rec = factory.crearRecurso();
+        
+     
+        
+        
+        
+        
+        
+        
         
         // 3. --- AQUI EMPIEZA LO TUYO (STATE) ---
         // Conectamos con tu clase Reserva
@@ -269,6 +292,18 @@ public class MenuReservaGimnasio extends javax.swing.JFrame {
     }
     }//GEN-LAST:event_btnCancelarActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+    txtNombre.setText(null);
+    cmbMembresia.setSelectedIndex(0);
+    cmbMaquina.setSelectedIndex(0);
+    txaSalida.setText(null);
+    
+    txtNombre.requestFocus();
+        
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     public static void main(String args[]) {
 
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -296,6 +331,7 @@ public class MenuReservaGimnasio extends javax.swing.JFrame {
     private javax.swing.JButton btnReservar;
     private javax.swing.JComboBox<String> cmbMaquina;
     private javax.swing.JComboBox<String> cmbMembresia;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
