@@ -195,8 +195,7 @@ public class MenuReservaGimnasio extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btnReservarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReservarActionPerformed
-
-     // 1. Recoger datos (esto es lo básico)
+// 1. Recoger datos (esto es lo básico)
         String nombre = txtNombre.getText().trim();
         String tipoMembresia = (String) cmbMembresia.getSelectedItem();
         
@@ -231,6 +230,8 @@ public class MenuReservaGimnasio extends javax.swing.JFrame {
         // Activamos los botones para confirmar/cancelar
         btnConfirmar.setEnabled(true);
         btnCancelar.setEnabled(true);
+    
+        
         
     }//GEN-LAST:event_btnReservarActionPerformed
 
@@ -254,7 +255,6 @@ public class MenuReservaGimnasio extends javax.swing.JFrame {
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
-        
         // Verificar que existe una reserva
     if (reservaActual != null) {
         // AQUÍ USAS TU PATRÓN STATE:
@@ -267,7 +267,6 @@ public class MenuReservaGimnasio extends javax.swing.JFrame {
         // Actualizamos la etiqueta de estado
         lblEstado.setText("Estado: " + reservaActual.getEstadoNombre());
     }
-    
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     public static void main(String args[]) {
