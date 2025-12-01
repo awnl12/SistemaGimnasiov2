@@ -23,6 +23,8 @@ public class MenuReservaGimnasio extends javax.swing.JFrame {
     int numero;
     public MenuReservaGimnasio() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        this.setSize(910, 550);
     }
 
     private GimnasioFactory getFactorySeleccionada() {
@@ -43,7 +45,7 @@ public class MenuReservaGimnasio extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        bg = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
         cmbMembresia = new javax.swing.JComboBox<>();
@@ -61,27 +63,63 @@ public class MenuReservaGimnasio extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         txaSalidaState = new javax.swing.JTextArea();
         btnAdapter = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(153, 153, 153));
+        bg.setBackground(new java.awt.Color(255, 255, 255));
+        bg.setForeground(new java.awt.Color(204, 204, 204));
+        bg.setLayout(null);
 
-        jLabel1.setText("Nombre");
+        jLabel1.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        jLabel1.setText("INGRESE EL NOMBRE:");
+        bg.add(jLabel1);
+        jLabel1.setBounds(40, 150, 150, 18);
 
+        txtNombre.setForeground(new java.awt.Color(0, 0, 0));
+        txtNombre.setToolTipText("");
+        txtNombre.setBorder(null);
+        txtNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNombreActionPerformed(evt);
+            }
+        });
+        bg.add(txtNombre);
+        txtNombre.setBounds(200, 150, 190, 16);
+
+        cmbMembresia.setBackground(new java.awt.Color(204, 204, 255));
+        cmbMembresia.setForeground(new java.awt.Color(0, 0, 0));
         cmbMembresia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Basico", "Vip" }));
+        cmbMembresia.setBorder(null);
+        bg.add(cmbMembresia);
+        cmbMembresia.setBounds(200, 200, 110, 20);
 
-        jLabel2.setText("Tipo Membresia");
+        jLabel2.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        jLabel2.setText("TIPO DE MEMBRESIA:");
+        bg.add(jLabel2);
+        jLabel2.setBounds(40, 200, 150, 20);
 
         txaSalida.setColumns(20);
         txaSalida.setRows(5);
         jScrollPane1.setViewportView(txaSalida);
 
+        bg.add(jScrollPane1);
+        jScrollPane1.setBounds(40, 290, 360, 150);
+
+        btnReservar.setBackground(new java.awt.Color(153, 204, 255));
         btnReservar.setText("Reservar");
         btnReservar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnReservarActionPerformed(evt);
             }
         });
+        bg.add(btnReservar);
+        btnReservar.setBounds(220, 460, 90, 23);
 
         jButton2.setText("Cerrar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -89,19 +127,31 @@ public class MenuReservaGimnasio extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
+        bg.add(jButton2);
+        jButton2.setBounds(800, 460, 80, 23);
 
-        jLabel3.setText("Maquina");
+        jLabel3.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        jLabel3.setText("RESERVAR:");
+        bg.add(jLabel3);
+        jLabel3.setBounds(40, 250, 90, 18);
 
+        cmbMaquina.setBackground(new java.awt.Color(204, 204, 255));
+        cmbMaquina.setForeground(new java.awt.Color(0, 0, 0));
         cmbMaquina.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Maquina", "Sala", "Entrenador" }));
         cmbMaquina.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbMaquinaActionPerformed(evt);
             }
         });
+        bg.add(cmbMaquina);
+        cmbMaquina.setBounds(200, 250, 110, 22);
 
-        lblEstado.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblEstado.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
         lblEstado.setText("CONFIRMAR/CANCELAR ESTADO DE RESERVA");
+        bg.add(lblEstado);
+        lblEstado.setBounds(470, 100, 320, 33);
 
+        btnConfirmar.setBackground(new java.awt.Color(153, 204, 255));
         btnConfirmar.setText("Confirmar");
         btnConfirmar.setEnabled(false);
         btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
@@ -109,7 +159,10 @@ public class MenuReservaGimnasio extends javax.swing.JFrame {
                 btnConfirmarActionPerformed(evt);
             }
         });
+        bg.add(btnConfirmar);
+        btnConfirmar.setBounds(470, 330, 110, 23);
 
+        btnCancelar.setBackground(new java.awt.Color(153, 204, 255));
         btnCancelar.setText("Cancelar");
         btnCancelar.setEnabled(false);
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -117,125 +170,94 @@ public class MenuReservaGimnasio extends javax.swing.JFrame {
                 btnCancelarActionPerformed(evt);
             }
         });
+        bg.add(btnCancelar);
+        btnCancelar.setBounds(800, 330, 80, 23);
 
+        jButton1.setBackground(new java.awt.Color(153, 204, 255));
         jButton1.setText("Limpiar Campos");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
+        bg.add(jButton1);
+        jButton1.setBounds(20, 460, 150, 23);
 
         txaSalidaState.setColumns(20);
         txaSalidaState.setRows(5);
         jScrollPane2.setViewportView(txaSalidaState);
 
+        bg.add(jScrollPane2);
+        jScrollPane2.setBounds(470, 140, 410, 160);
+
+        btnAdapter.setBackground(new java.awt.Color(153, 204, 255));
         btnAdapter.setText("Adaptar el horario");
         btnAdapter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAdapterActionPerformed(evt);
             }
         });
+        bg.add(btnAdapter);
+        btnAdapter.setBounds(350, 460, 150, 23);
+
+        jPanel1.setBackground(new java.awt.Color(102, 153, 255));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/logo.png"))); // NOI18N
+        jLabel4.setText("jLabel4");
+
+        jLabel5.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Buenos dias");
+
+        jLabel6.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Rellene los campos para solicitar una reserva");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(68, 68, 68)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cmbMaquina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cmbMembresia, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(80, 80, 80)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 55, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(btnConfirmar)
-                                .addGap(89, 89, 89)
-                                .addComponent(btnCancelar)
-                                .addGap(22, 22, 22))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(32, 32, 32))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnAdapter)
-                        .addGap(0, 0, Short.MAX_VALUE))))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnReservar)
-                .addGap(174, 174, 174)
-                .addComponent(jButton2)
-                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(lblEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(45, 45, 45)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 459, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 297, Short.MAX_VALUE)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabel4)
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(76, 76, 76)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(30, 30, 30)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(cmbMembresia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(44, 44, 44)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(cmbMaquina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
-                        .addGap(4, 4, 4))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(lblEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnCancelar)
-                            .addComponent(btnConfirmar))
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(36, 36, 36)
-                        .addComponent(btnAdapter)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(btnReservar)
-                    .addComponent(jButton2))
-                .addGap(14, 14, 14))
+                .addContainerGap()
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel6)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        bg.add(jPanel1);
+        jPanel1.setBounds(0, 0, 900, 80);
+        bg.add(jSeparator1);
+        jSeparator1.setBounds(200, 170, 190, 10);
+
+        jLabel7.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jLabel7.setText("INFORMACION DE LA RESERVA");
+        bg.add(jLabel7);
+        jLabel7.setBounds(40, 100, 320, 26);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, 900, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
         );
 
         pack();
@@ -401,6 +423,10 @@ public class MenuReservaGimnasio extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnAdapterActionPerformed
 
+    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreActionPerformed
+
     public static void main(String args[]) {
 
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -423,6 +449,7 @@ public class MenuReservaGimnasio extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel bg;
     private javax.swing.JButton btnAdapter;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnConfirmar;
@@ -434,9 +461,14 @@ public class MenuReservaGimnasio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblEstado;
     private javax.swing.JTextArea txaSalida;
     private javax.swing.JTextArea txaSalidaState;
