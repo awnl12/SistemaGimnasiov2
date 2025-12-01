@@ -4,7 +4,7 @@ import Factory.EntrenadorFactory;
 import Factory.GimnasioFactory;
 import Factory.MaquinaFactory;
 import Factory.SalaFactory;
-
+import Adapter.*;
 import Recursos.RecursoReservable;
 import Modelo.Usuario;
 import Proxy.RecursoProxy;
@@ -19,7 +19,8 @@ public class MenuReservaGimnasio extends javax.swing.JFrame {
     private Reserva reservaActual; //variable para patron state fr
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(MenuReservaGimnasio.class.getName());
-
+    String resul;
+    int numero;
     public MenuReservaGimnasio() {
         initComponents();
     }
@@ -59,6 +60,7 @@ public class MenuReservaGimnasio extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         txaSalidaState = new javax.swing.JTextArea();
+        btnAdapter = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -91,6 +93,11 @@ public class MenuReservaGimnasio extends javax.swing.JFrame {
         jLabel3.setText("Maquina");
 
         cmbMaquina.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Maquina", "Sala", "Entrenador" }));
+        cmbMaquina.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbMaquinaActionPerformed(evt);
+            }
+        });
 
         lblEstado.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblEstado.setText("CONFIRMAR/CANCELAR ESTADO DE RESERVA");
@@ -122,6 +129,13 @@ public class MenuReservaGimnasio extends javax.swing.JFrame {
         txaSalidaState.setRows(5);
         jScrollPane2.setViewportView(txaSalidaState);
 
+        btnAdapter.setText("Adaptar el horario");
+        btnAdapter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdapterActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -142,16 +156,22 @@ public class MenuReservaGimnasio extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(80, 80, 80)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnConfirmar)
-                        .addGap(89, 89, 89)
-                        .addComponent(btnCancelar)
-                        .addGap(22, 22, 22))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(32, 32, 32))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 55, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(btnConfirmar)
+                                .addGap(89, 89, 89)
+                                .addComponent(btnCancelar)
+                                .addGap(22, 22, 22))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(32, 32, 32))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnAdapter)
+                        .addGap(0, 0, Short.MAX_VALUE))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButton1)
@@ -193,6 +213,8 @@ public class MenuReservaGimnasio extends javax.swing.JFrame {
                             .addComponent(btnConfirmar))
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(36, 36, 36)
+                        .addComponent(btnAdapter)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
@@ -247,16 +269,37 @@ public class MenuReservaGimnasio extends javax.swing.JFrame {
         RecursoReservable recReal = factory.crearRecurso();
         RecursoReservable rec = new RecursoProxy(recReal);  
         
-      
-        
-        /* ===================================================================================*/
-        
-        
         
         String resultado = rec.reservar(usuario);
-
-        txaSalida.setText("");
-        txaSalida.append(resultado + "\n");
+        resul = resultado;
+        switch (cmbMaquina.getSelectedIndex()) {
+            case 0:
+                txaSalida.setText("");
+                txaSalida.append(resultado + "\n");
+                break;
+            case 1:
+                HorarioMaquinaGimnasio maquina = new HorarioMaquinaGimnasio();
+                txaSalida.setText("");
+                txaSalida.append(resultado + "\n"+ maquina.getHorarioJSON());
+                break;
+            case 2:
+                HorarioSala sala = new HorarioSala();
+                txaSalida.setText("");
+                txaSalida.append(resultado + "\n"+ sala.getHorarioSeparador());
+                break;
+            case 3:
+                if(cmbMembresia.getSelectedIndex()!= 2){
+                txaSalida.setText("");
+                txaSalida.append(resultado + "\n");
+                break;
+                }
+                else{
+                   HorarioEntrenador entrenador = new HorarioEntrenador();
+                    txaSalida.setText("");
+                    txaSalida.append(resultado + "\n"+entrenador.getHorarioTexto());
+                    break; 
+                }
+        }
 
 
         if (!resultado.startsWith("ACCESO DENEGADO")) {
@@ -274,8 +317,8 @@ public class MenuReservaGimnasio extends javax.swing.JFrame {
 
             btnConfirmar.setEnabled(false);
             btnCancelar.setEnabled(false);
-        }
-
+        }   
+        numero=cmbMaquina.getSelectedIndex();
         txtNombre.setText(null);
         cmbMembresia.setSelectedIndex(0);
         cmbMaquina.setSelectedIndex(0);
@@ -326,6 +369,39 @@ public class MenuReservaGimnasio extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void cmbMaquinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbMaquinaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbMaquinaActionPerformed
+
+    private void btnAdapterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdapterActionPerformed
+        switch (numero) {
+            case 0:
+                if(resul==null){
+                    txaSalida.setText("");
+                }
+                else{
+                    txaSalida.setText("");
+                    txaSalida.append(resul + "\n");  
+                }
+                break;
+            case 1:
+                HorarioAdapter maquina = new HorarioMaquinaAdapter(new HorarioMaquinaGimnasio());
+                txaSalida.setText("");
+                txaSalida.append(resul + "\n"+ maquina.obtenerHorario());
+                break;
+            case 2:
+                HorarioAdapter sala = new SalaAdapter(new HorarioSala());
+                txaSalida.setText("");
+                txaSalida.append(resul + "\n"+ sala.obtenerHorario());
+                break;
+            case 3:
+                HorarioAdapter entrenador = new EntrenadorAdapter(new HorarioEntrenador());
+                txaSalida.setText("");
+                txaSalida.append(resul + "\n"+entrenador.obtenerHorario());
+                break;
+        }
+    }//GEN-LAST:event_btnAdapterActionPerformed
+
     public static void main(String args[]) {
 
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -348,6 +424,7 @@ public class MenuReservaGimnasio extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAdapter;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnConfirmar;
     private javax.swing.JButton btnReservar;
