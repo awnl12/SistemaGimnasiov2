@@ -19,6 +19,8 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
+        this.setSize(790, 590);
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -36,7 +38,7 @@ public class Login extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().setLayout(null);
 
         btnAcceder.setBackground(new java.awt.Color(0, 102, 153));
         btnAcceder.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -46,16 +48,20 @@ public class Login extends javax.swing.JFrame {
                 btnAccederActionPerformed(evt);
             }
         });
-        getContentPane().add(btnAcceder, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 480, 340, -1));
+        getContentPane().add(btnAcceder);
+        btnAcceder.setBounds(280, 480, 340, 27);
 
         txtUser.setBackground(new java.awt.Color(204, 204, 204));
-        getContentPane().add(txtUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 370, 550, -1));
+        getContentPane().add(txtUser);
+        txtUser.setBounds(200, 370, 550, 22);
 
         jPasswordField1.setBackground(new java.awt.Color(204, 204, 204));
-        getContentPane().add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 430, 550, -1));
+        getContentPane().add(jPasswordField1);
+        jPasswordField1.setBounds(200, 430, 550, 22);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/BackgroundLogin.png"))); // NOI18N
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 780, 580));
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(0, 0, 780, 580);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
