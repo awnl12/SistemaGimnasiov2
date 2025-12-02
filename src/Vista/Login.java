@@ -80,7 +80,8 @@ public class Login extends javax.swing.JFrame {
             }
             
             
-            
+            txtUser.setText(null);
+            txtPassword.setText(null);
            
     }//GEN-LAST:event_btnAccederActionPerformed
 
