@@ -1,6 +1,6 @@
 package State;
 
-import Modelo.Reserva; // Esta clase la crearemos en el paso 3
+import Modelo.Reserva; 
 
 public interface EstadoReserva {
     String confirmar(Reserva reserva);

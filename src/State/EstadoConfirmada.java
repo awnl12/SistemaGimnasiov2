@@ -6,12 +6,14 @@ public class EstadoConfirmada implements EstadoReserva {
 
     @Override
     public String confirmar(Reserva reserva) {
-        return "Info: Esta reserva YA estaba confirmada.";
+        //regla del negocio :ya no se puede reconfirmar
+        return "Info: Esta reserva YA estaba confirmada."; //da un bloqueo
     }
 
     @Override
     public String cancelar(Reserva reserva) {
-        reserva.setEstado(new EstadoCancelada());
+        //si se puede 
+        reserva.setEstado(new EstadoCancelada()); // se convierte
         return "️ Aviso: Reserva confirmada anulada. Se procederá al reembolso.";
     }
 

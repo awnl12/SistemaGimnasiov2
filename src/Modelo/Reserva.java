@@ -8,19 +8,19 @@ public class Reserva {
     
     private Usuario usuario;
     private RecursoReservable recurso;
-    private EstadoReserva estadoActual; // Aquí vive el patrón State
+    private EstadoReserva estadoActual; // Aquí vive el patrón State / aqui se guarda
 
     // Constructor
     public Reserva(Usuario usuario, RecursoReservable recurso) {
         this.usuario = usuario;
         this.recurso = recurso;
-        // Por defecto, toda reserva nace como PENDIENTE
-        this.estadoActual = new EstadoPendiente();
+        
+        this.estadoActual = new EstadoPendiente(); //nace como pendiente 
     }
 
-    // Métodos que delegan el comportamiento al Estado actual
+    // Métodos para los estados
     public String confirmarReserva() {
-        return estadoActual.confirmar(this);
+        return estadoActual.confirmar(this); // delega , asi que le pregunta al estado
     }
 
     public String cancelarReserva() {
