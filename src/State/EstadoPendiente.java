@@ -3,7 +3,7 @@ package State;
 import Modelo.Reserva;
 
 public class EstadoPendiente implements EstadoReserva {
-
+//metodo
     @Override
     public String confirmar(Reserva reserva) {
         //si se puede cambia de estado

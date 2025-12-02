@@ -1,5 +1,5 @@
 package State;
-
+//define estados que debe cumplir
 import Modelo.Reserva; 
 
 public interface EstadoReserva {

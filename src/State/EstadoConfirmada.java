@@ -7,6 +7,7 @@ public class EstadoConfirmada implements EstadoReserva {
     @Override
     public String confirmar(Reserva reserva) {
         //regla del negocio :ya no se puede reconfirmar
+        // no usamos if
         return "Info: Esta reserva YA estaba confirmada."; //da un bloqueo
     }
 

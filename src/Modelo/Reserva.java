@@ -1,5 +1,5 @@
 package Modelo;
-
+//altera el comportamiento cuando su estado cambia 
 import Recursos.RecursoReservable;
 import State.EstadoPendiente;
 import State.EstadoReserva;
