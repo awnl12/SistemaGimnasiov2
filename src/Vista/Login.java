@@ -4,6 +4,7 @@
  */
 package Vista;
 
+import java.util.Arrays;
 import javax.swing.JOptionPane;
 
 /**
@@ -34,7 +35,7 @@ public class Login extends javax.swing.JFrame {
 
         btnAcceder = new javax.swing.JButton();
         txtUser = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        txtPassword = new javax.swing.JPasswordField();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -49,15 +50,15 @@ public class Login extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnAcceder);
-        btnAcceder.setBounds(280, 480, 340, 27);
+        btnAcceder.setBounds(280, 480, 340, 31);
 
         txtUser.setBackground(new java.awt.Color(204, 204, 204));
         getContentPane().add(txtUser);
-        txtUser.setBounds(200, 370, 550, 22);
+        txtUser.setBounds(200, 370, 550, 26);
 
-        jPasswordField1.setBackground(new java.awt.Color(204, 204, 204));
-        getContentPane().add(jPasswordField1);
-        jPasswordField1.setBounds(200, 430, 550, 22);
+        txtPassword.setBackground(new java.awt.Color(204, 204, 204));
+        getContentPane().add(txtPassword);
+        txtPassword.setBounds(200, 430, 550, 26);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/BackgroundLogin.png"))); // NOI18N
         getContentPane().add(jLabel2);
@@ -68,11 +69,19 @@ public class Login extends javax.swing.JFrame {
 
     private void btnAccederActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAccederActionPerformed
             MenuReservaGimnasio menu = new MenuReservaGimnasio();
+          char[] contra = txtPassword.getPassword();
+    String user = txtUser.getText();
+
+    if (!"admin".equals(user) || !Arrays.equals(contra, "admin".toCharArray())) {
+    JOptionPane.showMessageDialog(null, "Usuario o Contraseña incorrecto");
+}            else {
+        menu.setVisible(true);
+                dispose();
+            }
             
-            JOptionPane.showMessageDialog(null, "Bienvenido " + txtUser.getText() + "\n Accediento al sistema de reserva del GYM STRONGER...");
             
-            menu.setVisible(true);
-            dispose();
+            
+           
     }//GEN-LAST:event_btnAccederActionPerformed
 
     /**
@@ -103,7 +112,7 @@ public class Login extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAcceder;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JPasswordField jPasswordField1;
+    private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUser;
     // End of variables declaration//GEN-END:variables
 }

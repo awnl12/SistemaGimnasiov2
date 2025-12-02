@@ -36,8 +36,7 @@ public class MenuReservaGimnasio extends javax.swing.JFrame {
             return new SalaFactory();
         } else if ("Entrenador".equals(tipo)) {
             return new EntrenadorFactory();
-        }
-
+        } 
         return null;
     }
 
@@ -281,6 +280,9 @@ public class MenuReservaGimnasio extends javax.swing.JFrame {
    
         Usuario usuario = new Usuario(nombre, tipoMembresia);
         GimnasioFactory factory = getFactorySeleccionada();
+        
+        
+        
         
         if (factory == null){
            JOptionPane.showMessageDialog(null, " !!! SELECCIONE UN RECURSO !!! ");
